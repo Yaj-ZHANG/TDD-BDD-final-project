@@ -109,7 +109,7 @@ def list_products():
     app.logger.info("Request to list products...")
     products = []
     name = request.args.get("name")
-    category = request.aegs.get("category")
+    category = request.args.get("category")
     if name:
         app.logger.info("Find by name: %s", name)
         products = Product.find_by_name(name)

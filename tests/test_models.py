@@ -26,7 +26,7 @@ While debugging just these tests it's convenient to use this:
 import os
 import logging
 import unittest
-from decimal import Decimal
+from decimal import Decimal, InvalidOperation
 from service.models import Product, Category, db, DataValidationError
 from service import app
 from tests.factories import ProductFactory
@@ -256,3 +256,13 @@ class TestProductModel(unittest.TestCase):
         with self.assertRaises(DataValidationError) as context:
             product.deserialize("not a dict")
         self.assertIn("bad or no data", str(context.exception))
+    
+    def test_find_by_price_invalid_string(self):
+        """It should fail when price string is not a number"""
+        with self.assertRaises(InvalidOperation):
+            Product.find_by_price("not-a-number")
+
+    def test_find_by_price_empty_string(self):
+        """It should fail when price string is empty"""
+        with self.assertRaises(InvalidOperation):
+            Product.find_by_price("")

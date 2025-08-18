@@ -222,3 +222,37 @@ class TestProductModel(unittest.TestCase):
         self.assertEqual(found.count(), count)
         for product in found:
             self.assertEqual(product.price, price)
+
+    def test_deserialize_bad_available_type(self):
+        """It should not deserialize with a bad available type"""
+        product = Product()
+        data = ProductFactory().serialize()
+        data["available"] = "yes"  # not a boolean
+        with self.assertRaises(DataValidationError) as context:
+            product.deserialize(data)
+        self.assertIn("Invalid type for boolean", str(context.exception))
+
+    def test_deserialize_bad_category(self):
+        """It should not deserialize with a bad category"""
+        product = Product()
+        data = ProductFactory().serialize()
+        data["category"] = "NOT_A_CATEGORY"
+        with self.assertRaises(DataValidationError) as context:
+            product.deserialize(data)
+        self.assertIn("Invalid attribute", str(context.exception))
+
+    def test_deserialize_missing_name(self):
+        """It should not deserialize without a name"""
+        product = Product()
+        data = ProductFactory().serialize()
+        del data["name"]
+        with self.assertRaises(DataValidationError) as context:
+            product.deserialize(data)
+        self.assertIn("missing name", str(context.exception))
+
+    def test_deserialize_not_a_dict(self):
+        """It should not deserialize with non-dict data"""
+        product = Product()
+        with self.assertRaises(DataValidationError) as context:
+            product.deserialize("not a dict")
+        self.assertIn("bad or no data", str(context.exception))

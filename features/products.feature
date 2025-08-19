@@ -87,7 +87,7 @@ Scenario: Delete a Product
     And I press the "Delete" button
     Then I should see the message "Product has been Deleted!"
     When I press the "Clear" button
-    And I press the "Serach" button
+    And I press the "Search" button
     Then I should see the message "Success"
     And I should not see "Hat" in the results
 

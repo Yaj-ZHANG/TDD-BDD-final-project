@@ -61,7 +61,7 @@ Scenario: Update a Product
     And I press the "Search" button
     Then I should see the message "Success"
     And I should see "A red fedora" in the "Description" field
-    When I change the "Name" to "Fedora"
+    When I change "Name" to "Fedora"
     And I press the "Update" button
     Then I should see the message "Success"
     When I copy the "Id" field

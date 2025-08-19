@@ -123,3 +123,10 @@ Scenario: Search by Availability
     And I should see "Sheets" in the results
     And I should not see "Shoes" in the results
     
+Scenario: Search by Name
+    When I visit the "Home Page"
+    And I set the "Name" to "Hat"
+    And I click the "Search" button
+    Then I should see the message "Success"
+    And I should see "Hat" in the "Name" field
+    And I should see "A red fedora" in the "Description" field

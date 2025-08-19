@@ -42,7 +42,7 @@ Scenario: Create a Product
 Scenario: Read a Product
     When I visit the "Home Page"
     And I set the "Name" to "Hat"
-    And I click the "Search" button
+    And I press the "Search" button
     Then I should see the message "Success"
     When I copy the "Id" field
     And I press the "Clear" button
@@ -58,7 +58,7 @@ Scenario: Read a Product
 Scenario: Update a Product
     When I visit the "Home Page"
     And I set the "Name" to "Hat"
-    And I click the "Search" button
+    And I press the "Search" button
     Then I should see the message "Success"
     And I should see "A red fedora" in the "Description" field
     When I change the "Name" to "Fedora"
@@ -78,7 +78,7 @@ Scenario: Update a Product
 Scenario: Delete a Product
     When I visit the "Home Page"
     And I set the "Name" to "Hat"
-    And I click the "Search" button
+    And I press the "Search" button
     Then I should see the message "Success"
     And I should see "A red fedora" in the "Description" field
     When I copy the "Id" field
@@ -94,7 +94,7 @@ Scenario: Delete a Product
 Scenario: List all Products
     When I visit the "Home Page"
     And I press the "Clear" button
-    And I click the "Search" button
+    And I press the "Search" button
     Then I should see the message "Success"
     And I should see "Hat" in the results
     And I should see "Shoes" in the results
@@ -105,7 +105,7 @@ Scenario: Search by Category
     When I visit the "Home Page"
     And I press the "Clear" button
     And I select "Food" in the "Category" dropdown
-    And I click the "Search" button
+    And I press the "Search" button
     Then I should see the message "Success"
     And I should see "Big Mac" in the results
     And I should not see "Hat" in the results
@@ -116,7 +116,7 @@ Scenario: Search by Availability
     When I visit the "Home Page"
     And I press the "Clear" button
     And I select "True" in the "Available" dropdown
-    And I click the "Search" button
+    And I press the "Search" button
     Then I should see the message "Success"
     And I should see "Hat" in the results
     And I should see "Big Mac" in the results
@@ -126,7 +126,7 @@ Scenario: Search by Availability
 Scenario: Search by Name
     When I visit the "Home Page"
     And I set the "Name" to "Hat"
-    And I click the "Search" button
+    And I press the "Search" button
     Then I should see the message "Success"
     And I should see "Hat" in the "Name" field
     And I should see "A red fedora" in the "Description" field

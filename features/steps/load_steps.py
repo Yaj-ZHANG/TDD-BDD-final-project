@@ -52,7 +52,7 @@ def step_impl(context):
         #
         payload = {
             "name": row['name'],
-            "descriptiopn": row['description'],
+            "description": row['description'],
             "price": row['price'],
             "available": row['available'] in ['True', 'true', '1'],
             "category": row['category']
